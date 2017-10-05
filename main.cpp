@@ -1,12 +1,12 @@
 #include <iostream>
 #include "bitmap.h"
-#include "bitmap.cpp"
+#include <vector>
 
 using namespace std;
 
 int main()
 {
--State variables needed
+/*-State variables needed
 
 -Ask user what the name of the photo is
 
@@ -25,10 +25,22 @@ int main()
 
 -if user wanted a border, change the outter 5 pixles to 0 or 255
 
--say thanks and bye!
+-say thanks and bye! */
+
+Bitmap image;
+vector <vector <Pixel> > bmp;
+Pixel rgb;
+
+image.open("machupicchu.bmp");
+bmp = image.toPixelMatrix();
 
 
+cout<< "Picture loaded. It is " << bmp.size() <<" by " <<bmp[0].size() <<endl;
 
+    if (bmp.size() > '0') 
+    {
+     
+    }
 
 return 0;
 
