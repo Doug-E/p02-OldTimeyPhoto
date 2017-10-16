@@ -74,7 +74,7 @@ if (bmp.size() > 0 && bmp[0].size() > 0)
 if (border == "yes")
 {
     cout<< bcol << endl;
-    if (bmp.size() > 20 && bmp[0].size() > 20)
+    if (bmp.size() > 40 && bmp[0].size() > 40)
     {
         hight = bmp.size();
         width = bmp[0].size();
@@ -93,6 +93,23 @@ if (border == "yes")
                 rgb.blue = bcol;
                 rgb.green = bcol;
                 bmp[x2][width - 1 - index] = rgb;
+            }
+        }
+        for (int y2 = 0; y2 < bmp[0].size(); y2++)
+        {
+            for (int index = 0; index <= 10; index++)
+            {
+                rgb = bmp[0+index][y2];
+                rgb.red = bcol;
+                rgb.blue = bcol;
+                rgb.green = bcol;
+                bmp[0+index][y2] = rgb;
+
+                rgb = bmp[hight - 1 - index][y2];
+                rgb.red = bcol;
+                rgb.blue = bcol;
+                rgb.green = bcol;
+                bmp[hight - 1 - index][y2] = rgb;
             }
         }
     }
