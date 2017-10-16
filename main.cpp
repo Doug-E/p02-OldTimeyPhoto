@@ -8,14 +8,14 @@ int main()
 {
 /*-State variables needed
 -Ask user what the name of the photo is ||||CHECK
--Ask user if they want a border
--Ask user if they want to adjust exposure of photo. if yes what %?
--Ask user if they want to add a border to photo. if yes white or black?
+-Ask user if they want a border ||||CHECK
+-Ask user if they want to adjust exposure of photo. if yes what %? (turned to 4 bit)||||CHECK
+-Ask user if they want to add a border to photo. if yes white or black? ||||CHECK
 -Check to see if photo exists ||||CHECK
 -Run loop for color averaging (+ or - exposure amount)|||||CHECK 
     -loop will run by row then go to the next row. (nested loop while column >= current row)|||||CHECK
     -run while the rows are >= current row |||||CHECK
--if user wanted a border, change the outter 5 pixles to 0 or 255
+-if user wanted a border, change the outter 5 pixles to 0 or 255 ||||CHECK
 -say thanks and bye! */
 
 Bitmap image;
@@ -52,7 +52,7 @@ if (border == "yes" || border == "Yes" || border == "y" || border == "Y")
     else bcol = 255;
 }
 
-cout<< "Would you like to make this a 2 bit photo?" <<endl;
+cout<< "Would you like to make this a photo 4 bit?" <<endl;
 cin>> twobit;
 
 if (twobit == "yes" || twobit == "Yes" || twobit == "y" || twobit == "Y") istwobit = true;
@@ -71,10 +71,22 @@ if (bmp.size() > 0 && bmp[0].size() > 0)
 
             if (istwobit == true)
             {
-                if (grey < 63) grey = 0; 
-                if (grey >= 63 && grey < 127) grey = 85;
-                if (grey >= 127 && grey <191) grey = 170;
-                if (grey >= 191) grey = 255;
+                if (grey < 16) grey = 8; 
+                if (grey >= 16 && grey < 32) grey = 24;
+                if (grey >= 32 && grey < 48) grey = 40;
+                if (grey >= 48 && grey < 64) grey = 56;
+                if (grey >= 64 && grey < 80) grey = 72;
+                if (grey >= 80 && grey < 96) grey = 88;
+                if (grey >= 96 && grey < 112) grey = 104;
+                if (grey >= 112 && grey < 128) grey = 120;
+                if (grey >= 128 && grey < 144) grey = 136;
+                if (grey >= 144 && grey < 160) grey = 152;
+                if (grey >= 160 && grey < 176) grey = 168;
+                if (grey >= 176 && grey < 192) grey = 184;
+                if (grey >= 192 && grey < 208) grey = 200;
+                if (grey >= 208 && grey < 224) grey = 216;
+                if (grey >= 224 && grey < 240) grey = 232;
+                if (grey >= 240) grey = 248;
             }
 
             rgb.red = grey;
@@ -133,7 +145,7 @@ if (border == "yes")
     }
 }
 image.fromPixelMatrix(bmp);
-image.save("test.bmp");
+image.save("OldTimeyPhoto.bmp");
 
 return 0;
 }
