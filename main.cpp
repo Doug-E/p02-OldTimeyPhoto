@@ -23,7 +23,7 @@ vector <vector <Pixel> > bmp;
 Pixel rgb;
 string PicName, border, bcolor, exposure;
 bool isImg;
-int bcol;
+int bcol, width, hight;
 
 PicChoice:
 cout<< "What picture would you like to make black and white?" <<endl;
@@ -47,9 +47,9 @@ if (border == "yes" || border == "Yes" || border == "y" || border == "Y")
     cout<< "What color border? Black or white?"<<endl;
     cin>> bcolor;
     
-    if (bcolor == "black" || bcolor == "Black") bcol = 255;
+    if (bcolor == "black" || bcolor == "Black") bcol = 0;
     
-    else bcol = 0;
+    else bcol = 255;
 }
 
 bmp = image.toPixelMatrix();
@@ -69,21 +69,30 @@ if (bmp.size() > 0 && bmp[0].size() > 0)
             bmp[x][y] = rgb;
         }
     }
-    image.fromPixelMatrix(bmp);
-    image.save("test.bmp");
-    cout<< "Done :)"<<endl;
 }
 
 if (border == "yes")
 {
-cout<< "border thing works" <<endl;
+    cout<< bcol << endl;
     if (bmp.size() > 20 && bmp[0].size() > 20)
     {
+        hight = bmp.size();
+        width = bmp[0].size();
         for (int x2 = 0; x2 < bmp.size(); x2++)
         {
-            for (int index = 0; index <= 5; index++)
+            for (int index = 0; index <= 10; index++)
             {
-                bmp[0+index];
+                rgb = bmp[x2][0+index];
+                rgb.red = bcol;
+                rgb.blue = bcol;
+                rgb.green = bcol;
+                bmp[x2][0+index] = rgb;
+
+                rgb = bmp[x2][width - 1 - index];
+                rgb.red = bcol;
+                rgb.blue = bcol;
+                rgb.green = bcol;
+                bmp[x2][width - 1 - index] = rgb;
             }
         }
     }
@@ -92,6 +101,8 @@ cout<< "border thing works" <<endl;
         cout<< "Picture too small for a border!"<<endl;
     }
 }
+image.fromPixelMatrix(bmp);
+image.save("test.bmp");
 
 return 0;
 }
