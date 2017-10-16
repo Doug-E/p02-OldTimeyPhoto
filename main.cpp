@@ -21,8 +21,8 @@ int main()
 Bitmap image;
 vector <vector <Pixel> > bmp;
 Pixel rgb;
-string PicName, border, bcolor, exposure;
-bool isImg;
+string PicName, border, bcolor, exposure, twobit;
+bool isImg, istwobit;
 int bcol, width, hight;
 
 PicChoice:
@@ -52,6 +52,11 @@ if (border == "yes" || border == "Yes" || border == "y" || border == "Y")
     else bcol = 255;
 }
 
+cout<< "Would you like to make this a 2 bit photo?" <<endl;
+cin>> twobit;
+
+if (twobit == "yes" || twobit == "Yes" || twobit == "y" || twobit == "Y") istwobit = true;
+
 bmp = image.toPixelMatrix();
 cout<< "Picture loaded. It is " << bmp[0].size() <<" pixels wide by " <<bmp.size() <<" pixels tall." <<endl;
 if (bmp.size() > 0 && bmp[0].size() > 0) 
@@ -63,6 +68,15 @@ if (bmp.size() > 0 && bmp[0].size() > 0)
         {
             rgb = bmp[x][y];
             grey =(rgb.red + rgb.blue + rgb.green) /3;
+
+            if (istwobit == true)
+            {
+                if (grey < 63) grey = 0; 
+                if (grey >= 63 && grey < 127) grey = 85;
+                if (grey >= 127 && grey <191) grey = 170;
+                if (grey >= 191) grey = 255;
+            }
+
             rgb.red = grey;
             rgb.blue = grey;
             rgb.green = grey;
