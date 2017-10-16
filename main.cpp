@@ -33,7 +33,7 @@ PicChoice:
 
         if (isImg == false)
         {
-                cout<< "Invalid file." << endl;
+                cout<< "Invalid file. Photo must be a 24 bit bit map photo file." << endl;
                 goto PicChoice;
         }
 
@@ -52,7 +52,7 @@ PicChoice:
                 else bcol = 255;
         }
 
-        cout<< "Would you like to make this a photo 4 bit?" <<endl;
+        cout<< "Would you like to make this photo have a 4 bit effect?" <<endl;
         cin>> twobit;
 
         if (twobit == "yes" || twobit == "Yes" || twobit == "y" || twobit == "Y") istwobit = true;
